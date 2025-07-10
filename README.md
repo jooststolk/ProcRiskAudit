@@ -45,7 +45,8 @@
 The script will generate a CSV file in the current folder:
 
 ProcRiskAudit_YourDatabase_YYYYMMDD_HHMM.csv
-Script Execution Policy
+
+### Script Execution Policy
 By default, PowerShell may block script execution — especially on systems with strict security settings.
 
 If you see this error:
