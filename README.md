@@ -47,6 +47,7 @@ The script will generate a CSV file in the current folder:
 ProcRiskAudit_YourDatabase_YYYYMMDD_HHMM.csv
 
 Script Execution Policy
+
 By default, PowerShell may block script execution — especially on systems with strict security settings.
 
 If you see this error:
@@ -60,7 +61,7 @@ Or use this one-time bypass:
 
 powershell -ExecutionPolicy Bypass -File .\ProcRiskAudit.ps1
 
-Learn more: [PowerShell Execution Policies](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.5)
+Learn more: [PowerShell Execution Policies](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies)
 
 Customization
 You can modify the $KeywordProfiles array inside the script to:
