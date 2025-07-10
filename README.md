@@ -53,12 +53,14 @@ If you see this error:
 UnauthorizedAccess / PSSecurityException
 Run PowerShell as Administrator and enter:
 
-powershell
+```powershell
 Set-ExecutionPolicy RemoteSigned
+
 Or use this one-time bypass:
 
-powershell
+```powershell
 powershell -ExecutionPolicy Bypass -File .\ProcRiskAudit.ps1
+
 Learn more: PowerShell Execution Policies
 
 Customization
