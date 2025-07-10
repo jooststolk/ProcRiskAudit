@@ -1,54 +1,74 @@
-# ProcRiskAudit
-Scan of all stored procedures in a specified database for risky keywords
-You may need to adjust your PowerShell execution policy to run this script — see “Script Execution Policy” below.
+# ProcRiskAudit.ps1
 
-#  ProcRiskAudit.ps1
+> Scan SQL Server stored procedures for risky patterns like dynamic SQL, registry access, command execution, and known injection vectors  
+> ⚠️ You may need to adjust your PowerShell execution policy to run this script — see [Script Execution Policy](#script-execution-policy)
+
+---
 
 ## Overview
-**ProcRiskAudit** is a lightweight PowerShell script that scans SQL Server stored procedures for risky patterns — including dynamic SQL execution, registry access, OS-level commands, and known SQL injection vectors. It helps modernization teams, DBAs, and security-focused developers audit legacy databases with ease.
+
+**ProcRiskAudit** is a lightweight PowerShell script designed to help teams audit stored procedures in legacy or modern SQL Server databases. It identifies risky keywords, assesses their severity, and provides line-by-line insights — perfect for DBAs, modernization architects, and security reviewers.
+
+---
 
 ## Features
--  Fast scan of all stored procedures in a specified database
--  Flags risky keywords like `EXEC`, `xp_cmdshell`, `sp_executesql`, etc.
--  Line-by-line detection with line number and source snippet
--  Severity tagging (`Low`, `Medium`, `High`, `Critical`)
--  In-script explanations for each risky pattern
--  Outputs a CSV report with all findings
+
+- Fast scan across all stored procedures in a target database
+- Flags constructs such as `EXEC`, `xp_cmdshell`, `sp_executesql`, and others
+- Line-by-line detection with line number and code snippet
+- Severity tagging (`Low`, `Medium`, `High`, `Critical`)
+- In-script explanation of why each keyword may be risky
+- CSV output for easy auditing and report sharing
+
+---
 
 ## Example Output
 
 | ProcedureName | LineNumber | LineText                          | KeywordFound | Severity | RiskReason |
 |---------------|------------|-----------------------------------|--------------|----------|------------|
-| `AuditTrail`  | 42         | `EXEC xp_cmdshell 'dir C:\'`     | `xp_cmdshell`| Critical | Executes OS-level commands; high privilege abuse risk |
+| AuditTrail    | 42         | EXEC xp_cmdshell 'dir C:\'        | xp_cmdshell  | Critical | Executes OS-level commands; high privilege abuse risk |
+
+---
 
 ## Usage
 
 ### Prerequisites
-- Windows PowerShell
-- Access to SQL Server with Integrated Security
 
-### Run the Script
+- Windows PowerShell  
+- SQL Server access (with Integrated Security recommended)
+
+### Running the Script
 
 ```powershell
 .\ProcRiskAudit.ps1 -Server "YourSQLServer" -Database "YourDatabase"
+The script will generate a CSV file in the current folder:
 
-### Script Execution Policy
-By default, PowerShell may block scripts from running — especially on systems with strict execution policies.
+ProcRiskAudit_YourDatabase_YYYYMMDD_HHMM.csv
+Script Execution Policy
+By default, PowerShell may block script execution — especially on systems with strict security settings.
 
-If you encounter an error like:
+If you see this error:
 
-At line:1 char:1
-+ .\ProcRiskAudit.ps1 ...
-+ ~~~~~~~~~~~~~~~~~~~~
 UnauthorizedAccess / PSSecurityException
-You can fix this by temporarily allowing script execution:
-
-Run PowerShell as Administrator, and then:
+Run PowerShell as Administrator and enter:
 
 powershell
 Set-ExecutionPolicy RemoteSigned
-Alternatively, to bypass just for this script:
+Or use this one-time bypass:
 
 powershell
 powershell -ExecutionPolicy Bypass -File .\ProcRiskAudit.ps1
-⚠️ Use caution when changing execution policy. It's best to restore your original setting afterward.
+Learn more: PowerShell Execution Policies
+
+Customization
+You can modify the $KeywordProfiles array inside the script to:
+
+Add or remove keywords
+Adjust severity levels
+Refine explanations or add new patterns
+
+License
+MIT License — open for use and modification.
+
+Author
+Created by Joost Stolk to support real-world system audits, legacy modernization, and secure database practices. Feedback and contributions welcome.
