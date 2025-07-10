@@ -59,7 +59,7 @@ Or use this one-time bypass:
 
 powershell -ExecutionPolicy Bypass -File .\ProcRiskAudit.ps1
 
-Learn more: PowerShell Execution Policies
+Learn more: [PowerShell Execution Policies](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.5)
 
 Customization
 You can modify the $KeywordProfiles array inside the script to:
