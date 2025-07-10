@@ -41,6 +41,7 @@
 
 ```powershell
 .\ProcRiskAudit.ps1 -Server "YourSQLServer" -Database "YourDatabase"
+
 The script will generate a CSV file in the current folder:
 
 ProcRiskAudit_YourDatabase_YYYYMMDD_HHMM.csv
