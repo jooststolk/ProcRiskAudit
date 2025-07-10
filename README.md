@@ -1,7 +1,7 @@
 # ProcRiskAudit.ps1
 
 > Scan SQL Server stored procedures for risky patterns like dynamic SQL, registry access, command execution, and known injection vectors  
-> ⚠️ You may need to adjust your PowerShell execution policy to run this script — see [Script Execution Policy](#script-execution-policy)
+> ⚠️ ⚠️ You may need to adjust your PowerShell execution policy — see the section titled **"Script Execution Policy"** below.
 
 ---
 
@@ -46,7 +46,7 @@ The script will generate a CSV file in the current folder:
 
 ProcRiskAudit_YourDatabase_YYYYMMDD_HHMM.csv
 
-### Script Execution Policy
+Script Execution Policy
 By default, PowerShell may block script execution — especially on systems with strict security settings.
 
 If you see this error:
